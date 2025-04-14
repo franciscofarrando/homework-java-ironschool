@@ -1,6 +1,6 @@
 package com.example;
 
-public class CourseClass {
+public class Course {
     private String courseId;
     private String name;
     private double price;
@@ -8,12 +8,13 @@ public class CourseClass {
     // private Teacher teacher;
 
     //constructor de name y price
-
-
-    public CourseClass(String name, double price) {
+    public Course(String name, double price) {
         this.name = name;
         this.price = price;
     }
+
+
+    //getters y setters
 
     public String getName() {
         return name;
@@ -22,7 +23,7 @@ public class CourseClass {
     public void setName(String name) {
         this.name = name;
     }
-
+/*
     public double getPrice() {
         return price;
     }
@@ -31,6 +32,22 @@ public class CourseClass {
         this.price = price;
     }
 
+    public String getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
+    }
+
+    public double getMoney_earned() {
+        return money_earned;
+    }
+
+    public void setMoney_earned(double money_earned) {
+        this.money_earned = money_earned;
+    }
+*/
     @Override
     public String toString() {
         return "CourseClass{" +
