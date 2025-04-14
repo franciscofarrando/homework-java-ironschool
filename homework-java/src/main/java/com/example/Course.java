@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.UUID;
+
 public class Course {
     private String courseId;
     private String name;
@@ -12,7 +14,11 @@ public class Course {
         this.name = name;
         this.price = price;
     }
+    //Constructor vacio para UUID
 
+    public Course() {
+        this.courseId = UUID.randomUUID().toString();
+    }
 
     //getters y setters
 
