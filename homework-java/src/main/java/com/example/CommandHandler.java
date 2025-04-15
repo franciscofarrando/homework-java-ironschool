@@ -50,7 +50,7 @@ public class CommandHandler {
         for(Course c: courses){
             if(c.getCourseId().equals(course_id)){
                 course = c;
-                break;
+                return course;
             }
         }
         return null;
