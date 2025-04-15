@@ -14,25 +14,19 @@ public class Student {
 
 
     public Student(String name,String address,String email) {
-        this.studentId = generateUniqueStudentId();
+        this.studentId = UUID.randomUUID().toString();
         this.name = name;
         this.address = address;
         this.email = email;
         this.course = null;
     }
     public Student(){
-        this.studentId = generateUniqueStudentId();
+        this.studentId = UUID.randomUUID().toString();
+
     }
 
 
-    private String generateUniqueStudentId(){
-        String id= "";
-        do{
-            id=UUID.randomUUID().toString();
-        } while (usedIds.contains(id));
-        usedIds.add(id);
-        return id;
-    }
+
 
     public String getStudentId() {
         return studentId;

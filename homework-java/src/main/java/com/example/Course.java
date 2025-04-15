@@ -7,12 +7,14 @@ public class Course {
     private String name;
     private double price;
     private double money_earned;
-    // private Teacher teacher;
+    private Teacher teacher;
 
     //constructor de name y price
     public Course(String name, double price) {
+        setCourseId();
         this.name = name;
         this.price = price;
+        setTeacher(null);
     }
     //Constructor vacio para UUID
 
@@ -29,7 +31,7 @@ public class Course {
     public void setName(String name) {
         this.name = name;
     }
-/*
+
     public double getPrice() {
         return price;
     }
@@ -42,7 +44,7 @@ public class Course {
         return courseId;
     }
 
-    public void setCourseId(String courseId) {
+    public void setCourseId() {
         this.courseId = courseId;
     }
 
@@ -53,14 +55,23 @@ public class Course {
     public void setMoney_earned(double money_earned) {
         this.money_earned = money_earned;
     }
-*/
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
     @Override
     public String toString() {
-        return "CourseClass{" +
+        return "Course{" +
                 "courseId='" + courseId + '\'' +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", money_earned=" + money_earned +
+                ", teacher=" + teacher +
                 '}';
     }
 }
