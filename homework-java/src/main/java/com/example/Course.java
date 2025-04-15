@@ -29,7 +29,7 @@ public class Course {
     public void setName(String name) {
         this.name = name;
     }
-/*
+
     public double getPrice() {
         return price;
     }
@@ -53,7 +53,7 @@ public class Course {
     public void setMoney_earned(double money_earned) {
         this.money_earned = money_earned;
     }
-*/
+
     @Override
     public String toString() {
         return "CourseClass{" +

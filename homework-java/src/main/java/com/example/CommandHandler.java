@@ -65,7 +65,6 @@ public class CommandHandler {
          } else {
              System.out.println("Couldn't assign the course");
          }
-
         assert course != null;
         updateMoneyEarned(course);
     }
