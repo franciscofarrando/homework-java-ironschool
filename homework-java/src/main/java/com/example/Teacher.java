@@ -8,6 +8,7 @@ public class Teacher {
     private double salary;
 
     public Teacher (String name, double salary) {
+        this.teacherId = UUID.randomUUID().toString();
         setName(name);
         setSalary(salary);
     }
@@ -35,5 +36,8 @@ public class Teacher {
         this.salary = salary;
     }
 
-
+    @Override
+    public String toString() {
+        return "Name: " + name + ", teacherId: " + teacherId + ", Salary: $" + salary;
+    }
 }
