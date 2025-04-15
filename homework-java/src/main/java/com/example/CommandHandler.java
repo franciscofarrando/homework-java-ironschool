@@ -17,10 +17,10 @@ public class CommandHandler {
         String command = commandPart[0];
         switch (command){
             case "ENROLL":
-               enrollStudent(commandPart[0],commandPart[1]);
+               enrollStudent(commandPart[1],commandPart[2]);
                break;
             case "ASSIGN":
-                assignTeacher(commandPart[0], commandPart[1]);
+                assignTeacher(commandPart[1], commandPart[2]);
                 break;
             case "SHOW":
                 handleShow(commandPart);
@@ -144,8 +144,9 @@ public class CommandHandler {
 
 
     private void handleLookUp(String[] command) {
-        String id = command[1];
-        switch (command[0]){
+        String type = command[1];
+        String id = command[2];
+        switch (type){
             case "COURSE":
                 lookUpCourse(id);
                 break;
