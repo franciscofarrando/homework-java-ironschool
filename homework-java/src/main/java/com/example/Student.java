@@ -1,5 +1,6 @@
 package com.example;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 
@@ -12,21 +13,29 @@ public class Student {
     private String email;
     private Course course;
 
-
     public Student(String name,String address,String email) {
-        this.studentId = UUID.randomUUID().toString();
+        this.studentId = generateUniqueStudentId();
         this.name = name;
         this.address = address;
         this.email = email;
         this.course = null;
     }
-    public Student(){
-        this.studentId = UUID.randomUUID().toString();
 
+    public Student(){
+        this.studentId = generateUniqueStudentId();
     }
 
+    private String generateUniqueStudentId() {
+        String id;
+        Random random = new Random();
+        do {
+            int number = random.nextInt(900) + 100;
+            id = "S" + number;
+        } while (usedIds.contains(id));
 
-
+        usedIds.add(id);
+        return id;
+    }
 
     public String getStudentId() {
         return studentId;
