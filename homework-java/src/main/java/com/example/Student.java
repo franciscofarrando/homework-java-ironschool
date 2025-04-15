@@ -20,6 +20,9 @@ public class Student {
         this.email = email;
         this.course = null;
     }
+    public Student(Course course){
+        setCourse(course);
+    }
     public Student(){
         this.studentId = generateUniqueStudentId();
     }
