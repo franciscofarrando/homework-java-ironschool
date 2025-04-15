@@ -6,6 +6,7 @@ public class Teacher {
     private String teacherId; //UUID
     private String name;
     private double salary;
+    private Course course;
 
     public Teacher (String name, double salary) {
         setName(name);
@@ -35,5 +36,11 @@ public class Teacher {
         this.salary = salary;
     }
 
+    public Course getCourse() {
+        return course;
+    }
 
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 }
