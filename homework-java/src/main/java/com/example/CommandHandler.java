@@ -2,7 +2,7 @@ package com.example;
 import java.util.*;
 
 public class CommandHandler {
-    private List<Student> students;
+    private static List<Student> students;
     private List<Teacher> teachers;
     private List<Course> courses;
 
@@ -15,14 +15,15 @@ public class CommandHandler {
     public void executeCommand(String wholeCommand){
         String[] commandPart = wholeCommand.split(" ");
         String command = commandPart[0];
-        switch (command){
+        switch (commandPart[0]){
             case "ENROLL":
-               enrollStudent(commandPart[1],commandPart[2]);
-               break;
+                enrollStudent(commandPart[1],commandPart[2]);
+                break;
             case "ASSIGN":
                 assignTeacher(commandPart[1], commandPart[2]);
                 break;
             case "SHOW":
+                System.out.println(Arrays.toString(commandPart));
                 handleShow(commandPart);
                 break;
             case "LOOKUP":
@@ -34,7 +35,7 @@ public class CommandHandler {
         }
     }
 
-    public Student findStudentById(String student_id){
+    public static Student findStudentById(String student_id){
         Student student = null;
         for(Student s: students){
             if(s.getStudentId().equals(student_id)){
@@ -67,19 +68,7 @@ public class CommandHandler {
         return null;
     }
 
-
-    public Teacher findTeacherById(String teacher_id){
-        Teacher teacher = null;
-        for(Teacher t: teachers){
-            if(t.getTeacherId().equals(teacher_id)){
-                teacher = t;
-                return teacher;
-            }
-        }
-        return null;
-    }
-
-    private void lookUp(String[] commandPart) {
+    /*private void lookUp(String[] commandPart) {
         switch (commandPart[1]){
             case "COURSE":
                 break;
@@ -89,18 +78,18 @@ public class CommandHandler {
                 System.out.println(findTeacherById(commandPart[2]).toString());
         }
 
-    }
+    }*/
 
     private void enrollStudent(String student_id, String course_id) {
         Student student =  findStudentById(student_id);
         Course course =  findCourseById(course_id);
 
-         if (student != null && course!= null) {
-             student.setCourse(course);
-             updateMoneyEarned(course);
-         } else {
-             System.out.println("Couldn't assign the course");
-         }
+        if (student != null && course!= null) {
+            student.setCourse(course);
+            updateMoneyEarned(course);
+        } else {
+            System.out.println("Couldn't assign the course");
+        }
 
     }
 
@@ -130,7 +119,7 @@ public class CommandHandler {
             case "TEACHERS":
                 showTeachers();
             case "PROFIT":
-                showProfit();
+                showProfits();
             default:
                 System.out.println( "Can't recognize command");
         }
@@ -152,9 +141,6 @@ public class CommandHandler {
         System.out.println(teachersString);
     }
 
-    private void showProfit() {
-
-    }
 
     private void showCourses() {
         StringBuilder coursesString = new StringBuilder();
@@ -163,17 +149,17 @@ public class CommandHandler {
         }
     }
 
-    private void showStudents() {
+    /*private void showStudents() {
         for (Student student: students){
             System.out.println(student.toString());
         }
-    }
+    }*/
 
-    private void showTeachers() {
+    /*private void showTeachers() {
         for (Teacher teacher: teachers){
             System.out.println(teacher.toString());
         }
-    }
+    }*/
 
     private void showProfits() {
         double totalEarned = courses.stream().mapToDouble(courses ->courses.getMoney_earned()).sum();
@@ -210,26 +196,27 @@ public class CommandHandler {
         }else {
             System.out.println("Course not found.");
         }
-        System.out.println(coursesString);
+        System.out.println(course);
     }
 
 
 
+
+private void lookUpStudent(String id) {
+    Student student = CommandHandler.findStudentById(id);
+
+    if(student != null){
+        System.out.println(id);
+    }else {
+        System.out.println("Student not found.");
     }
-    private void lookUpStudent(String id) {
-        Student student = findStudentById(id);
-        if(student != null){
-            System.out.println(id);
-        }else {
-            System.out.println("Student not found.");
-        }
+}
+private void lookUpTeacher(String id) {
+    Teacher teacher = findTeacherById(id);
+    if (teacher!=null){
+        System.out.println(id);
+    }else {
+        System.out.println("Teacher not found");
     }
-    private void lookUpTeacher(String id) {
-        Teacher teacher = findTeacherById(id);
-        if (teacher!=null){
-            System.out.println(id);
-        }else {
-            System.out.println("Teacher not found");
-        }
-    }
+}
 }
