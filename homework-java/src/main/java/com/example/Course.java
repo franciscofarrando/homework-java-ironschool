@@ -1,26 +1,47 @@
 package com.example;
 
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 import java.util.UUID;
 
 public class Course {
+
+    private static final Set<String> usedIds = new HashSet<>();
     private String courseId;
     private String name;
     private double price;
     private double money_earned;
-    // private Teacher teacher;
+    private Teacher teacher;
 
     //constructor de name y price
     public Course(String name, double price) {
+        setCourseId();
         this.name = name;
         this.price = price;
+        setTeacher(null);
     }
     //Constructor vacio para UUID
 
     public Course() {
-        this.courseId = UUID.randomUUID().toString();
+        this.courseId = generateUniqueStudentId();
+
     }
 
     //getters y setters
+
+
+      private String generateUniqueStudentId() {
+        String id;
+        Random random = new Random();
+        do {
+            int number = random.nextInt(900) + 100;
+            id = "C" + number;
+        } while (usedIds.contains(id));
+
+        usedIds.add(id);
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -42,7 +63,7 @@ public class Course {
         return courseId;
     }
 
-    public void setCourseId(String courseId) {
+    public void setCourseId() {
         this.courseId = courseId;
     }
 
@@ -54,13 +75,22 @@ public class Course {
         this.money_earned = money_earned;
     }
 
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
     @Override
     public String toString() {
-        return "CourseClass{" +
+        return "Course{" +
                 "courseId='" + courseId + '\'' +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", money_earned=" + money_earned +
+                ", teacher=" + teacher +
                 '}';
     }
 }

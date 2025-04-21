@@ -52,4 +52,7 @@ public class Teacher {
     public String toString() {
         return "Name: " + name + ", teacherId: " + teacherId + ", Salary: $" + salary;
     }
+
+    public void setCourse(Course course) {
+    }
 }
