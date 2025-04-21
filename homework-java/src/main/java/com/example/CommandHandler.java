@@ -20,17 +20,15 @@ public class CommandHandler {
                enrollStudent(commandPart[1],commandPart[2]);
                break;
             case "ASSIGN":
-
+                assignTeacher(commandPart[1],commandPart[2]);
                 break;
             case "SHOW":
+                System.out.println(command);
                 handleShow(commandPart);
                 break;
             case "LOOKUP":
                 lookUp(commandPart);
                 break;
-            default:
-                System.out.println("Can't recognize command");
-
         }
     }
 
@@ -70,13 +68,27 @@ public class CommandHandler {
     private void lookUp(String[] commandPart) {
         switch (commandPart[1]){
             case "COURSE":
+                Course course = findCourseById(commandPart[2]);
+                if (course != null)
+                    System.out.println(course.toString());
+                else
+                    System.out.println("Course not found.");
                 break;
             case "STUDENT":
+                Student student = findStudentById(commandPart[2]);
+                if (student != null)
+                    System.out.println(student.toString());
+                else
+                    System.out.println("Student not found.");
                 break;
             case "TEACHER":
-                System.out.println(findTeacherById(commandPart[2]).toString());
+                Teacher teacher = findTeacherById(commandPart[2]);
+                if (teacher != null)
+                    System.out.println(teacher.toString());
+                else
+                    System.out.println("Teacher not found.");
+                break;
         }
-
     }
 
     private void enrollStudent(String student_id, String course_id) {
@@ -86,10 +98,23 @@ public class CommandHandler {
          if (student != null && course!= null) {
              student.setCourse(course);
              updateMoneyEarned(course);
+             System.out.println(student.toString());
          } else {
              System.out.println("Couldn't assign the course");
          }
 
+    }
+
+    public void assignTeacher(String teacher_id, String course_id){
+        Teacher teacher = findTeacherById(teacher_id);
+        Course course = findCourseById(course_id);
+
+        if (teacher != null && course!=null){
+            course.setTeacher(teacher);
+            System.out.println(course.toString());
+        }else {
+            System.out.println("Couldn't assign the course");
+        }
     }
 
     private void updateMoneyEarned(Course course){
@@ -98,25 +123,30 @@ public class CommandHandler {
     }
 
     private void handleShow(String[] command) {
-        switch (command[0]){
+        System.out.println(Arrays.toString(command) + "del handle");
+        switch (command[1]){
             case "COURSES":
                 showCourses();
+                break;
             case "STUDENTS":
                 showStudents();
+                break;
             case "TEACHERS":
                 showTeachers();
+                break;
             case "PROFIT":
                 showProfit();
-            default:
-                System.out.println( "Can't recognize command");
+                break;
         }
     }
 
     private void showStudents() {
+        System.out.println("llego a show students");
         StringBuilder studentsString = new StringBuilder();
         for (Student student: students){
             studentsString.append(student.toString()).append("\n");
         }
+        System.out.println("Student usando el toString() es:");
         System.out.println(studentsString);
     }
 
@@ -129,7 +159,10 @@ public class CommandHandler {
     }
 
     private void showProfit() {
+        double totalEarned = courses.stream().mapToDouble(courses ->courses.getMoney_earned()).sum();
+        double totalSalaries = teachers.stream().mapToDouble(teachers -> teachers.getSalary()).sum();
 
+        System.out.println("Profits are: " + (totalEarned-totalSalaries));
     }
 
     private void showCourses() {

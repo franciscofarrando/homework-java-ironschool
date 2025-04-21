@@ -12,7 +12,7 @@ public class Course {
     private String name;
     private double price;
     private double money_earned;
-    // private Teacher teacher;
+    private Teacher teacher;
 
     //constructor de name y price
     public Course(String name, double price) {
@@ -72,6 +72,14 @@ public class Course {
         this.money_earned = money_earned;
     }
 
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
     @Override
     public String toString() {
         return "CourseClass{" +
@@ -81,4 +89,6 @@ public class Course {
                 ", money_earned=" + money_earned +
                 '}';
     }
+
+
 }

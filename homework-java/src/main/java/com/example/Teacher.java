@@ -7,6 +7,7 @@ public class Teacher {
     private String name;
     private double salary;
 
+
     public Teacher (String name, double salary) {
         this.teacherId = generateUniqueTeacherId();
         setName(name);

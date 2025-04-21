@@ -78,13 +78,13 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "studentId='" + studentId + '\'' +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
-                ", course=" + course +
-                '}';
+      return "\n📘 Student Info\n" +
+                "------------------------\n" +
+                "🆔 ID       : " + studentId + "\n" +
+                "👤 Name     : " + name + "\n" +
+                "🏠 Address  : " + address + "\n" +
+                "📧 Email    : " + email + "\n" +
+                "📚 Course   : " + (course != null ? getCourse().getName() : "Not enrolled") + "\n";
     }
 }
 
