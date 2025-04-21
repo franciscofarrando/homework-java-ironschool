@@ -54,7 +54,7 @@ public class Menu {
         }
         System.out.println(numberOfCourses + "courses created for " + schoolName);
 
-        System.out.println("Let's create the students. How wany should be created? Please enter a number.");
+        System.out.println("Let's create the students. How many should be created? Please enter a number.");
         int numberOfStudents = Integer.parseInt(myScanner.nextLine());
 
         for (int i = 1; i < numberOfStudents; i++) {
@@ -84,49 +84,49 @@ public class Menu {
             String[] parts = input.split(" ");
 
             if (parts[0].equalsIgnoreCase("ENROLL") && parts.length == 3) {
-                // school.enrollStudent(parts[1], parts[2]);
+                commandHandler.enrollStudent(parts[1], parts[2]);
             } else if (parts[0].equalsIgnoreCase("ENROLL")) {
                 System.out.println("ENROLL command needs to follow this format: ENROLL [STUDENT_ID] [COURSE_ID]");
             }
 
             if (parts[0].equalsIgnoreCase("ASSIGN") && parts.length == 3) {
-                // school.enrollStudent(parts[1], parts[2]);
+               // commandHandler.??(parts[1], parts[2]);
             } else if (parts[0].equalsIgnoreCase("ASSIGN")) {
                 System.out.println("ENROLL command needs to follow this format: [TEACHER_ID] [COURSE_ID]");
             }
 
             if (parts[0].equalsIgnoreCase("SHOW") && parts.length == 2 && parts[1].equalsIgnoreCase("COURSES")) {
-                // school.enrollStudent(parts[1], parts[2]);
+                commandHandler.handleShow();
             }
 
             if (parts[0].equalsIgnoreCase("LOOKUP") && parts[1].equalsIgnoreCase("COURSE") && parts.length == 3) {
-                // school.enrollStudent(parts[1], parts[2]);
+                commandHandler.findCourseById(parts[2]);
             } else if (parts[0].equalsIgnoreCase("LOOKUP") && parts[1].equalsIgnoreCase("COURSE")) {
                 System.out.println("LOOKUP COURSE command needs to follow this format: LOOKUP COURSE [COURSE_ID]");
             }
 
             if (parts[0].equalsIgnoreCase("SHOW") && parts.length == 2 && parts[1].equalsIgnoreCase("STUDENTS")) {
-                // school.enrollStudent(parts[1], parts[2]);
+               // commandHandler.enrollStudent();
             }
 
             if (parts[0].equalsIgnoreCase("LOOKUP") && parts[1].equalsIgnoreCase("STUDENT") && parts.length == 3) {
-                // school.enrollStudent(parts[1], parts[2]);
+                commandHandler.findStudentById(parts[2]);
             } else if (parts[0].equalsIgnoreCase("LOOKUP") && parts[1].equalsIgnoreCase("STUDENT")) {
                 System.out.println("LOOKUP STUDENT command needs to follow this format: LOOKUP STUDENT [STUDENT_ID]");
             }
 
             if (parts[0].equalsIgnoreCase("SHOW") && parts.length == 2 && parts[1].equalsIgnoreCase("TEACHERS")) {
-                // school.enrollStudent(parts[1], parts[2]);
+                //commandHandler.enrollStudent();
             }
 
             if (parts[0].equalsIgnoreCase("LOOKUP") && parts[1].equalsIgnoreCase("TEACHER") && parts.length == 3) {
-                // school.enrollStudent(parts[1], parts[2]);
+                //commandHandler.enrollStudent(parts[2]);
             } else if (parts[0].equalsIgnoreCase("LOOKUP") && parts[1].equalsIgnoreCase("TEACHER")) {
                 System.out.println("LOOKUP TEACHER command needs to follow this format: LOOKUP TEACHER [TEACHER_ID]");
             }
 
             if (parts[0].equalsIgnoreCase("SHOW") && parts.length == 2 && parts[1].equalsIgnoreCase("PROFIT")) {
-                // school.enrollStudent(parts[1], parts[2]);
+                //commandHandler.enrollStudent();
             }
             System.out.println("Do you want to perform another action? (yes/no)");
             String response = myScanner.nextLine().trim().toLowerCase();
