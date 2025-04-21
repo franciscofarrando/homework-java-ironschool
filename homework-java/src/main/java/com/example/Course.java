@@ -1,8 +1,13 @@
 package com.example;
 
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 import java.util.UUID;
 
 public class Course {
+    private static final Set<String> usedIds = new HashSet<>();
+
     private String courseId;
     private String name;
     private double price;
@@ -11,6 +16,7 @@ public class Course {
 
     //constructor de name y price
     public Course(String name, double price) {
+        this.courseId = generateUniqueCourseId();
         this.name = name;
         this.price = price;
     }
@@ -18,6 +24,18 @@ public class Course {
 
     public Course() {
         this.courseId = UUID.randomUUID().toString();
+    }
+
+    private String generateUniqueCourseId() {
+        String id;
+        Random random = new Random();
+        do {
+            int number = random.nextInt(900) + 100;
+            id = "C" + number;
+        } while (usedIds.contains(id));
+
+        usedIds.add(id);
+        return id;
     }
 
     //getters y setters

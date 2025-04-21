@@ -75,5 +75,16 @@ public class Student {
         }
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId='" + studentId + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", course=" + course +
+                '}';
+    }
 }
 
