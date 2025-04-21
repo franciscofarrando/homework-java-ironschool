@@ -159,10 +159,15 @@ public class CommandHandler {
     }
 
     private void showProfit() {
-        double totalEarned = courses.stream().mapToDouble(courses ->courses.getMoney_earned()).sum();
-        double totalSalaries = teachers.stream().mapToDouble(teachers -> teachers.getSalary()).sum();
+        double totalEarned = courses.stream().mapToDouble(Course::getMoney_earned).sum();
+        double totalSalaries = teachers.stream().mapToDouble(Teacher::getSalary).sum();
 
-        System.out.println("Profits are: " + (totalEarned-totalSalaries));
+        System.out.println("===== FINANCIAL REPORT =====");
+        System.out.println("Total income from courses: $" + totalEarned);
+        System.out.println("Total expenses (teachers' salaries): $" + totalSalaries);
+        System.out.println("------------------------------");
+        System.out.printf("Net profit: $%.2f%n", (totalEarned - totalSalaries));
+        System.out.println("==============================");
     }
 
     private void showCourses() {

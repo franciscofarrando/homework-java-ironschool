@@ -80,15 +80,17 @@ public class Course {
         this.teacher = teacher;
     }
 
+
     @Override
     public String toString() {
-        return "CourseClass{" +
-                "courseId='" + courseId + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", money_earned=" + money_earned +
-                '}';
+        return String.format(
+                "📚 Course Info:\n" +
+                        "🔢 ID            : %s\n" +
+                        "📖 Name          : %s\n" +
+                        "💵 Price         : $%.2f\n" +
+                        "💰 Money Earned  : $%.2f\n" +
+                        "👨‍🏫 Teacher      : %s",
+                courseId, name, price, money_earned, teacher
+        );
     }
-
-
 }
