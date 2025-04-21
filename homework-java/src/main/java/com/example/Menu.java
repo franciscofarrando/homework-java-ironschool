@@ -81,7 +81,11 @@ public class Menu {
         while (continueRunning) {
             System.out.println("Enter a command from the next list: \n ENROLL [STUDENT_ID] [COURSE_ID] \n ASSIGN [TEACHER_ID] [COURSE_ID] \n SHOW COURSES \n LOOKUP COURSE [COURSE_ID] \n SHOW STUDENTS \n LOOKUP STUDENT [STUDENT_ID] \n SHOW TEACHERS \n LOOKUP TEACHER [TEACHER_ID] \n SHOW PROFIT ");
             var input = myScanner.nextLine();
-            String[] parts = input.split(" ");
+
+            commandHandler.executeCommand(input);
+
+
+            /*String[] parts = input.split(" ");
 
             if (parts[0].equalsIgnoreCase("ENROLL") && parts.length == 3) {
                 commandHandler.enrollStudent(parts[1], parts[2]);
@@ -128,6 +132,8 @@ public class Menu {
             if (parts[0].equalsIgnoreCase("SHOW") && parts.length == 2 && parts[1].equalsIgnoreCase("PROFIT")) {
                 //commandHandler.enrollStudent();
             }
+
+             */
             System.out.println("Do you want to perform another action? (yes/no)");
             String response = myScanner.nextLine().trim().toLowerCase();
             if (!response.equals("yes")) {
