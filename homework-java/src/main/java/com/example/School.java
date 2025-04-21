@@ -21,7 +21,7 @@ public class School {
             return teachers;
     }
 
-    public void showTeachers() {
+    /*public void showTeachers() {
             if (teachers.isEmpty()) {
                 System.out.println("No teachers have been added yet.");
             } else {
@@ -30,7 +30,7 @@ public class School {
                     System.out.println(" #" + (i + 1) + " - " + teachers.get(i));
                 }
             }
-    }
+    }*/
     public void addCourse (Course course){
         courses.add(course);
     }
@@ -38,7 +38,7 @@ public class School {
         return courses;
     }
 
-    public void showCourses() {
+    /*public void showCourses() {
         if (courses.isEmpty()) {
             System.out.println("No courses have been added yet.");
         } else {
@@ -47,14 +47,14 @@ public class School {
                 System.out.println(" #" + (i + 1) + " - " + courses.get(i));
             }
         }
-    }
+    }*/
     public void addStudent (Student student){
         students.add(student);
     }
     public List<Student> getStudents () {
         return students;
     }
-
+    /*
     public void showStudents() {
         if (students.isEmpty()) {
             System.out.println("No students have been added yet.");
@@ -64,6 +64,6 @@ public class School {
                 System.out.println(" #" + (i + 1) + " - " + students.get(i));
             }
         }
-    }
+    }*/
 }
 
