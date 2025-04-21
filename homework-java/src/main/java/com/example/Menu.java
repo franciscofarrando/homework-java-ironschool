@@ -82,7 +82,7 @@ public class Menu {
             System.out.println("Enter a command from the next list: \n ENROLL [STUDENT_ID] [COURSE_ID] \n ASSIGN [TEACHER_ID] [COURSE_ID] \n SHOW COURSES \n LOOKUP COURSE [COURSE_ID] \n SHOW STUDENTS \n LOOKUP STUDENT [STUDENT_ID] \n SHOW TEACHERS \n LOOKUP TEACHER [TEACHER_ID] \n SHOW PROFIT ");
             var input = myScanner.nextLine();
 
-            CommandHandler commandHandler = null;
+            CommandHandler commandHandler;
             commandHandler.executeCommand(input);
 
 
