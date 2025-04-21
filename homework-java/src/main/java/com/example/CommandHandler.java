@@ -33,7 +33,6 @@ public class CommandHandler {
 
         }
     }
-// buscadores de ID
 
     public Student findStudentById(String student_id){
         Student student = null;
@@ -69,17 +68,40 @@ public class CommandHandler {
     }
 
 
+    public Teacher findTeacherById(String teacher_id){
+        Teacher teacher = null;
+        for(Teacher t: teachers){
+            if(t.getTeacherId().equals(teacher_id)){
+                teacher = t;
+                return teacher;
+            }
+        }
+        return null;
+    }
+
+    private void lookUp(String[] commandPart) {
+        switch (commandPart[1]){
+            case "COURSE":
+                break;
+            case "STUDENT":
+                break;
+            case "TEACHER":
+                System.out.println(findTeacherById(commandPart[2]).toString());
+        }
+
+    }
+
     private void enrollStudent(String student_id, String course_id) {
         Student student =  findStudentById(student_id);
         Course course =  findCourseById(course_id);
 
          if (student != null && course!= null) {
              student.setCourse(course);
+             updateMoneyEarned(course);
          } else {
              System.out.println("Couldn't assign the course");
          }
-        assert course != null;
-        updateMoneyEarned(course);
+
     }
 
     public void assignTeacher(String teacher_id, String course_id){
@@ -103,22 +125,41 @@ public class CommandHandler {
         switch (command[0]){
             case "COURSES":
                 showCourses();
-                break;
             case "STUDENTS":
                 showStudents();
-                break;
             case "TEACHERS":
                 showTeachers();
-                break;
             case "PROFIT":
-                showProfits();
-                break;
+                showProfit();
+            default:
+                System.out.println( "Can't recognize command");
         }
     }
 
+    private void showStudents() {
+        StringBuilder studentsString = new StringBuilder();
+        for (Student student: students){
+            studentsString.append(student.toString()).append("\n");
+        }
+        System.out.println(studentsString);
+    }
+
+    private void showTeachers() {
+        StringBuilder teachersString = new StringBuilder();
+        for (Teacher teacher: teachers){
+            teachersString.append(teacher.toString()).append("\n");
+        }
+        System.out.println(teachersString);
+    }
+
+    private void showProfit() {
+
+    }
+
     private void showCourses() {
+        StringBuilder coursesString = new StringBuilder();
         for (Course course: courses){
-        System.out.println(course.toString());
+            coursesString.append(course.toString()).append("\n");
         }
     }
 
@@ -169,6 +210,9 @@ public class CommandHandler {
         }else {
             System.out.println("Course not found.");
         }
+        System.out.println(coursesString);
+    }
+
 
 
     }
