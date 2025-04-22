@@ -12,25 +12,34 @@ public class CommandHandler {
         this.teachers = teachers;
     }
 
-    public void executeCommand(String wholeCommand){
+    public boolean executeCommand(String wholeCommand){
         String[] commandPart = wholeCommand.split(" ");
-        String command = commandPart[0];
+        if (commandPart.length == 0) {
+            System.out.println("❌ Comando vacío.");
+            return false;
+        }
+        String command = commandPart[0].toUpperCase();
+
         switch (command){
             case "ENROLL":
                enrollStudent(commandPart[1],commandPart[2]);
-               break;
+                return true;
             case "ASSIGN":
                 assignTeacher(commandPart[1],commandPart[2]);
-                break;
+                return true;
             case "SHOW":
-                System.out.println(command);
+                //System.out.println(command);
                 handleShow(commandPart);
-                break;
+                return true;
             case "LOOKUP":
                 lookUp(commandPart);
-                break;
+                return true;
+            default:
+                System.out.println("❌ Comando no reconocido.");
+                return false;
         }
     }
+
 
     public Student findStudentById(String student_id){
         Student student = null;
@@ -123,8 +132,8 @@ public class CommandHandler {
     }
 
     private void handleShow(String[] command) {
-        System.out.println(Arrays.toString(command) + "del handle");
-        switch (command[1]){
+        //System.out.println(Arrays.toString(command) + "del handle");
+        switch (command[1].toUpperCase()){
             case "COURSES":
                 showCourses();
                 break;

@@ -80,17 +80,32 @@ public class Menu {
         boolean continueRunning = true;
         while (continueRunning) {
             System.out.println("Enter a command from the next list: \n ENROLL [STUDENT_ID] [COURSE_ID] \n ASSIGN [TEACHER_ID] [COURSE_ID] \n SHOW COURSES \n LOOKUP COURSE [COURSE_ID] \n SHOW STUDENTS \n LOOKUP STUDENT [STUDENT_ID] \n SHOW TEACHERS \n LOOKUP TEACHER [TEACHER_ID] \n SHOW PROFIT ");
-            var input = myScanner.nextLine();
+            var input = myScanner.nextLine().trim().toLowerCase();
 
             CommandHandler commandHandler = new CommandHandler (school.getStudents(), school.getCourses(), school.getTeachers());
-            commandHandler.executeCommand(input);
+            boolean validCommand = commandHandler.executeCommand(input);
+            if (!validCommand) {
+                System.out.println("Pulse cualquier tecla para volver a intentarlo...");
+                myScanner.nextLine(); // Espera que el usuario pulse algo
+                continue; // vuelve al principio del while
+            }
+
+            System.out.println("Do you want to perform another action? (yes/no)");
+            String response = myScanner.nextLine().trim().toLowerCase();
+
+            if (!response.equals("yes")) {
+                continueRunning = false;
+                System.out.println("Thank you for using the School Manager. Goodbye!");
+            }
+
+            /*commandHandler.executeCommand(input);
 
             System.out.println("Do you want to perform another action? (yes/no)");
             String response = myScanner.nextLine().trim().toLowerCase();
             if (!response.equals("yes")) {
                 continueRunning = false;
                 System.out.println("Thank you for using the School Manager. Goodbye!");
-            }
+            }*/
 
 
         }
