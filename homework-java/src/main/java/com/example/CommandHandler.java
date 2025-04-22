@@ -6,29 +6,35 @@ public class CommandHandler {
     private List<Teacher> teachers;
     private List<Course> courses;
 
+    final String ROJO = "\u001B[31m";
+    final String RESET = "\u001B[0m";
+
     public CommandHandler(List<Student> students, List<Course> courses, List<Teacher> teachers) {
         this.students = students;
         this.courses = courses;
         this.teachers = teachers;
     }
 
-    public void executeCommand(String wholeCommand){
+    public boolean executeCommand(String wholeCommand){
         String[] commandPart = wholeCommand.split(" ");
         String command = commandPart[0];
         switch (command){
             case "ENROLL":
                enrollStudent(commandPart[1],commandPart[2]);
-               break;
+               return true;
             case "ASSIGN":
                 assignTeacher(commandPart[1],commandPart[2]);
-                break;
+                return true;
             case "SHOW":
-                System.out.println(command);
+                //System.out.println(command);
                 handleShow(commandPart);
-                break;
+                return true;
             case "LOOKUP":
                 lookUp(commandPart);
-                break;
+                return true;
+            default:
+                System.out.println("❌ Comando no reconocido.");
+                return false;
         }
     }
 
@@ -123,8 +129,8 @@ public class CommandHandler {
     }
 
     private void handleShow(String[] command) {
-        System.out.println(Arrays.toString(command) + "del handle");
-        switch (command[1]){
+        //System.out.println(Arrays.toString(command) + "del handle");
+        switch (command[1].toUpperCase()){
             case "COURSES":
                 showCourses();
                 break;
@@ -141,12 +147,12 @@ public class CommandHandler {
     }
 
     private void showStudents() {
-        System.out.println("llego a show students");
+        //System.out.println("llego a show students");
         StringBuilder studentsString = new StringBuilder();
         for (Student student: students){
             studentsString.append(student.toString()).append("\n");
         }
-        System.out.println("Student usando el toString() es:");
+       // System.out.println("Student usando el toString() es:");
         System.out.println(studentsString);
     }
 
@@ -162,12 +168,13 @@ public class CommandHandler {
         double totalEarned = courses.stream().mapToDouble(Course::getMoney_earned).sum();
         double totalSalaries = teachers.stream().mapToDouble(Teacher::getSalary).sum();
 
-        System.out.println("===== FINANCIAL REPORT =====");
+
+        System.out.println(ROJO + "===== FINANCIAL REPORT =====" + RESET);
         System.out.println("Total income from courses: $" + totalEarned);
         System.out.println("Total expenses (teachers' salaries): $" + totalSalaries);
         System.out.println("------------------------------");
         System.out.printf("Net profit: $%.2f%n", (totalEarned - totalSalaries));
-        System.out.println("==============================");
+        System.out.println(ROJO +"==============================" + RESET);
     }
 
     private void showCourses() {
