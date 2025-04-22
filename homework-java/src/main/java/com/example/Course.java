@@ -6,8 +6,8 @@ import java.util.Set;
 import java.util.UUID;
 
 public class Course {
-
     private static final Set<String> usedIds = new HashSet<>();
+
     private String courseId;
     private String name;
     private double price;
@@ -16,22 +16,17 @@ public class Course {
 
     //constructor de name y price
     public Course(String name, double price) {
-        setCourseId();
+        this.courseId = generateUniqueCourseId();
         this.name = name;
         this.price = price;
-        setTeacher(null);
     }
     //Constructor vacio para UUID
 
     public Course() {
-        this.courseId = generateUniqueStudentId();
-
+        this.courseId = UUID.randomUUID().toString();
     }
 
-    //getters y setters
-
-
-      private String generateUniqueStudentId() {
+    private String generateUniqueCourseId() {
         String id;
         Random random = new Random();
         do {
@@ -42,6 +37,8 @@ public class Course {
         usedIds.add(id);
         return id;
     }
+
+    //getters y setters
 
     public String getName() {
         return name;
@@ -63,7 +60,7 @@ public class Course {
         return courseId;
     }
 
-    public void setCourseId() {
+    public void setCourseId(String courseId) {
         this.courseId = courseId;
     }
 
@@ -83,14 +80,17 @@ public class Course {
         this.teacher = teacher;
     }
 
+
     @Override
     public String toString() {
-        return "Course{" +
-                "courseId='" + courseId + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", money_earned=" + money_earned +
-                ", teacher=" + teacher +
-                '}';
+        return String.format(
+                "📚 Course Info:\n" +
+                        "🔢 ID            : %s\n" +
+                        "📖 Name          : %s\n" +
+                        "💵 Price         : $%.2f\n" +
+                        "💰 Money Earned  : $%.2f\n" +
+                        "👨‍🏫 Teacher      : %s",
+                courseId, name, price, money_earned, teacher
+        );
     }
 }

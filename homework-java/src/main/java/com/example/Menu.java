@@ -19,8 +19,8 @@ public class Menu {
         System.out.println("Now, we need some teachers for your school " + schoolName + ". How wany teachers should be created? Please enter a number.");
         int numberOfTeachers = Integer.parseInt(myScanner.nextLine());
 
-        for (int i = 1; i < numberOfTeachers; i++) {
-            System.out.println("\nEnter the details for teacher " + i);
+        for (int i = 0; i < numberOfTeachers; i++) {
+            System.out.println("\nEnter the details for teacher " + (i+1));
 
             System.out.println("Name: ");
             String name = myScanner.nextLine();
@@ -31,15 +31,15 @@ public class Menu {
             Teacher teacher = new Teacher(name, salary);
             school.addTeacher(teacher);
 
-            System.out.println("Teacher " + i + " added.");
+            System.out.println("Teacher " + (i+1) + " added.");
         }
         System.out.println(numberOfTeachers + "teachers created for " + schoolName);
 
         System.out.println("Now, we need some courses. How wany should be created? Please enter a number.");
         int numberOfCourses = Integer.parseInt(myScanner.nextLine());
 
-        for (int i = 1; i < numberOfCourses; i++) {
-            System.out.println("\nEnter the details for course " + i);
+        for (int i = 0; i < numberOfCourses; i++) {
+            System.out.println("\nEnter the details for course " + (i+1));
 
             System.out.println("Name: ");
             String name = myScanner.nextLine();
@@ -57,8 +57,8 @@ public class Menu {
         System.out.println("Let's create the students. How many should be created? Please enter a number.");
         int numberOfStudents = Integer.parseInt(myScanner.nextLine());
 
-        for (int i = 1; i < numberOfStudents; i++) {
-            System.out.println("\nEnter the details for student " + i);
+        for (int i = 0; i < numberOfStudents; i++) {
+            System.out.println("\nEnter the details for student " + (i+1));
 
             System.out.println("Name: ");
             String name = myScanner.nextLine();
@@ -72,7 +72,7 @@ public class Menu {
             Student student = new Student(name, address, email);
             school.addStudent(student);
 
-            System.out.println("Student " + i + " added.");
+            System.out.println("Student " + (i+1) + " added.");
         }
         System.out.println(numberOfStudents + "students created for " + schoolName);
 
@@ -82,13 +82,14 @@ public class Menu {
             System.out.println("Enter a command from the next list: \n ENROLL [STUDENT_ID] [COURSE_ID] \n ASSIGN [TEACHER_ID] [COURSE_ID] \n SHOW COURSES \n LOOKUP COURSE [COURSE_ID] \n SHOW STUDENTS \n LOOKUP STUDENT [STUDENT_ID] \n SHOW TEACHERS \n LOOKUP TEACHER [TEACHER_ID] \n SHOW PROFIT ");
             var input = myScanner.nextLine();
 
+            CommandHandler commandHandler = new CommandHandler (school.getStudents(), school.getCourses(), school.getTeachers());
             commandHandler.executeCommand(input);
+            /*
 
-
-            /*String[] parts = input.split(" ");
+            String[] parts = input.split(" ");
 
             if (parts[0].equalsIgnoreCase("ENROLL") && parts.length == 3) {
-                commandHandler.enrollStudent(parts[1], parts[2]);
+                CommandHandler.enrollStudent(parts[1], parts[2]);
             } else if (parts[0].equalsIgnoreCase("ENROLL")) {
                 System.out.println("ENROLL command needs to follow this format: ENROLL [STUDENT_ID] [COURSE_ID]");
             }
@@ -100,7 +101,7 @@ public class Menu {
             }
 
             if (parts[0].equalsIgnoreCase("SHOW") && parts.length == 2 && parts[1].equalsIgnoreCase("COURSES")) {
-                commandHandler.handleShow();
+                CommandHandler.handleShow();
             }
 
             if (parts[0].equalsIgnoreCase("LOOKUP") && parts[1].equalsIgnoreCase("COURSE") && parts.length == 3) {
@@ -110,7 +111,7 @@ public class Menu {
             }
 
             if (parts[0].equalsIgnoreCase("SHOW") && parts.length == 2 && parts[1].equalsIgnoreCase("STUDENTS")) {
-               // commandHandler.enrollStudent();
+               CommandHandler.showStudents();
             }
 
             if (parts[0].equalsIgnoreCase("LOOKUP") && parts[1].equalsIgnoreCase("STUDENT") && parts.length == 3) {
@@ -131,9 +132,9 @@ public class Menu {
 
             if (parts[0].equalsIgnoreCase("SHOW") && parts.length == 2 && parts[1].equalsIgnoreCase("PROFIT")) {
                 //commandHandler.enrollStudent();
-            }
+            } */
 
-             */
+
             System.out.println("Do you want to perform another action? (yes/no)");
             String response = myScanner.nextLine().trim().toLowerCase();
             if (!response.equals("yes")) {

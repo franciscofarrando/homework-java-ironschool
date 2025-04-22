@@ -1,3 +1,4 @@
+
 import com.example.CommandHandler;
 import com.example.Course;
 import com.example.Student;
@@ -26,9 +27,7 @@ public class CommandHandlerTest {
 
         commandHandler.executeCommand(commandWithIds);
 
-
-
-
+        assertEquals("Ethics", student.getCourse().getName());
 
     }
 }
