@@ -54,11 +54,18 @@ public class Menu {
                 String salaryInput = myScanner.nextLine();
 
                 try {
+
                     salary = Double.parseDouble(salaryInput);
-                    validSalary = true; // Sale del bucle si el valor es correcto
+
+                    if (salary <= 0) {
+                        System.out.println("Salary must be a positive number greater than 0. Please try again.");
+                    } else {
+                        validSalary = true;
+                    }
                 } catch (NumberFormatException e) {
-                    System.out.println("Invalid input. Please enter a valid number (e.g., 3500.50 or 3000) for the salary.");
+                    System.out.println("Invalid input. Please enter a valid number (e.g., 199.99 or 150) for the price.");
                 }
+
             }
 
             Teacher teacher = new Teacher(name, salary);
@@ -106,7 +113,7 @@ public class Menu {
                     if (price <= 0) {
                         System.out.println("Price must be a positive number greater than 0. Please try again.");
                     } else {
-                        validPrice = true; // Valor correcto, salimos del bucle
+                        validPrice = true;
                     }
                 } catch (NumberFormatException e) {
                     System.out.println("Invalid input. Please enter a valid number (e.g., 199.99 or 150) for the price.");
