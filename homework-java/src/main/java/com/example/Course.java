@@ -20,10 +20,10 @@ public class Course {
         this.name = name;
         this.price = price;
     }
-    //Constructor vacio para UUID
+    //Constructor vacio con id
 
     public Course() {
-        this.courseId = UUID.randomUUID().toString();
+        this.courseId = generateUniqueCourseId();
     }
 
     private String generateUniqueCourseId() {
