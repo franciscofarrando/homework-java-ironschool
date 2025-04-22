@@ -7,6 +7,7 @@ public class Teacher {
     private String name;
     private double salary;
 
+
     public Teacher (String name, double salary) {
         this.teacherId = generateUniqueTeacherId();
         setName(name);
@@ -50,7 +51,13 @@ public class Teacher {
 
     @Override
     public String toString() {
-        return "Name: " + name + ", teacherId: " + teacherId + ", Salary: $" + salary;
+        return String.format(
+                "👨‍🏫 Teacher Info:\n" +
+                        "📛 Name       : %s\n" +
+                        "🆔 ID         : %s\n" +
+                        "💰 Salary     : $%.2f",
+                name, teacherId, salary
+        );
     }
 
     public void setCourse(Course course) {

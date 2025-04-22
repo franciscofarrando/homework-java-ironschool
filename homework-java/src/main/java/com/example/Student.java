@@ -75,5 +75,16 @@ public class Student {
         }
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+      return "\n📘 Student Info\n" +
+                "------------------------\n" +
+                "🆔 ID       : " + studentId + "\n" +
+                "👤 Name     : " + name + "\n" +
+                "🏠 Address  : " + address + "\n" +
+                "📧 Email    : " + email + "\n" +
+                "📚 Course   : " + (course != null ? getCourse().getName() : "Not enrolled") + "\n";
+    }
 }
 

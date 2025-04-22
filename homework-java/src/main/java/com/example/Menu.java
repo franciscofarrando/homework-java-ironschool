@@ -31,7 +31,7 @@ public class Menu {
             Teacher teacher = new Teacher(name, salary);
             school.addTeacher(teacher);
 
-            System.out.println("Teacher " + i + " added.");
+            System.out.println("Teacher " + (i+1) + " added.");
         }
         System.out.println(numberOfTeachers + "teachers created for " + schoolName);
 
