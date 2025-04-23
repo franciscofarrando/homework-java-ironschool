@@ -174,7 +174,7 @@ public class Menu {
             CommandHandler commandHandler = new CommandHandler (school.getStudents(), school.getCourses(), school.getTeachers());
             boolean validCommand = commandHandler.executeCommand(input);
             if (!validCommand) {
-                System.out.println("Pulse cualquier tecla para volver a intentarlo...");
+                System.out.println("Press any key to try it again...");
                 myScanner.nextLine(); // Espera que el usuario pulse algo
                 continue; // vuelve al principio del while
             }

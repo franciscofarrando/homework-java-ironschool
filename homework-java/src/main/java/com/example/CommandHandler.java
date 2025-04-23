@@ -33,7 +33,7 @@ public class CommandHandler {
                 lookUp(commandPart);
                 return true;
             default:
-                System.out.println("❌ Comando no reconocido.");
+                System.out.println("❌ Not a command.");
                 return false;
         }
     }
