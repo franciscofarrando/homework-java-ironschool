@@ -6,6 +6,9 @@ public class CommandHandler {
     private List<Teacher> teachers;
     private List<Course> courses;
 
+    final String ROJO = "\u001B[31m";
+    final String RESET = "\u001B[0m";
+
     public CommandHandler(List<Student> students, List<Course> courses, List<Teacher> teachers) {
         this.students = students;
         this.courses = courses;
@@ -14,16 +17,11 @@ public class CommandHandler {
 
     public boolean executeCommand(String wholeCommand){
         String[] commandPart = wholeCommand.split(" ");
-        if (commandPart.length == 0) {
-            System.out.println("❌ Comando vacío.");
-            return false;
-        }
-        String command = commandPart[0].toUpperCase();
-
+        String command = commandPart[0];
         switch (command){
             case "ENROLL":
                enrollStudent(commandPart[1],commandPart[2]);
-                return true;
+               return true;
             case "ASSIGN":
                 assignTeacher(commandPart[1],commandPart[2]);
                 return true;
@@ -39,7 +37,6 @@ public class CommandHandler {
                 return false;
         }
     }
-
 
     public Student findStudentById(String student_id){
         Student student = null;
@@ -150,12 +147,12 @@ public class CommandHandler {
     }
 
     private void showStudents() {
-        System.out.println("llego a show students");
+        //System.out.println("llego a show students");
         StringBuilder studentsString = new StringBuilder();
         for (Student student: students){
             studentsString.append(student.toString()).append("\n");
         }
-        System.out.println("Student usando el toString() es:");
+       // System.out.println("Student usando el toString() es:");
         System.out.println(studentsString);
     }
 
@@ -171,12 +168,13 @@ public class CommandHandler {
         double totalEarned = courses.stream().mapToDouble(Course::getMoney_earned).sum();
         double totalSalaries = teachers.stream().mapToDouble(Teacher::getSalary).sum();
 
-        System.out.println("===== FINANCIAL REPORT =====");
+
+        System.out.println(ROJO + "===== FINANCIAL REPORT =====" + RESET);
         System.out.println("Total income from courses: $" + totalEarned);
         System.out.println("Total expenses (teachers' salaries): $" + totalSalaries);
         System.out.println("------------------------------");
         System.out.printf("Net profit: $%.2f%n", (totalEarned - totalSalaries));
-        System.out.println("==============================");
+        System.out.println(ROJO +"==============================" + RESET);
     }
 
     private void showCourses() {

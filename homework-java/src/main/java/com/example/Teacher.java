@@ -22,7 +22,7 @@ public class Teacher {
         Random random = new Random();
         do {
             int number = random.nextInt(900) + 100; // genera número entre 100 y 999
-            id = "S" + number;
+            id = "T" + number;
         } while (usedIds.contains(id));
 
         usedIds.add(id);
@@ -53,10 +53,10 @@ public class Teacher {
     public String toString() {
         return String.format(
                 "👨‍🏫 Teacher Info:\n" +
-                        "📛 Name       : %s\n" +
                         "🆔 ID         : %s\n" +
+                        "📛 Name       : %s\n" +
                         "💰 Salary     : $%.2f",
-                name, teacherId, salary
+                teacherId, name, salary
         );
     }
 
